@@ -55,13 +55,7 @@ export default {
   target: 'static', // default is server
   generate: {
     async routes() {
-      const paths = [];
-
-      projects.forEach(project => {
-        paths.push(`/project/${project.slug}`);
-      });
-
-      return paths;
+      return projects.map(project => `/project/${project.slug}`)
     }
   }
 }
