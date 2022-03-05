@@ -1,6 +1,6 @@
+import {projects} from './utils/projectsData';
 
 export default {
-  mode: 'universal',
   /*
   ** Headers of the page
   */
@@ -50,6 +50,18 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+    }
+  }, 
+  target: 'static', // default is server
+  generate: {
+    async routes() {
+      const paths = [];
+
+      projects.forEach(project => {
+        paths.push(`/project/${project.slug}`);
+      });
+
+      return paths;
     }
   }
 }
